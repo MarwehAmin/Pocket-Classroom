@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=no">
+    <title>Pocket Classroom</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" href="photo_2025-10-06_16-07-00-removebg-preview.png" sizes="512x512" >
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-book me-2"></i>Pocket Classroom
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html" data-section="library">
+                            <i class="bi bi-collection-play me-1"></i> 
+                            <span class="nav-text">Library</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-section="author">
+                            <i class="bi bi-pencil-square me-1"></i> 
+                            <span class="nav-text">Author</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-section="learn">
+                            <i class="bi bi-mortarboard me-1"></i> 
+                            <span class="nav-text">Learn</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Library Section -->
+    <section id="library" class="section active">
+        <div class="container mt-4">
+            <div class="library-header">
+                <div class="library-title">
+                    <h2>Your Capsules</h2>
+                    <p class="mb-3">Create, import, export, and manage learning capsules. All data stays in your browser.</p>
+                </div>
+                <div class="library-actions">
+                    <button class="btn btn-outline-black btn-dark me-2 mb-2" id="newCapsuleBtn">
+                        <i class="bi bi-plus-circle me-1"></i> 
+                        <span class="btn-text">New Capsule</span>
+                    </button>
+                    <button class="btn btn-outline-black btn-dark mb-2" id="importJsonBtn">
+                        <i class="bi bi-upload me-1"></i> 
+                        <span class="btn-text">Import JSON</span>
+                    </button>
+                    <input type="file" id="importFileInput" accept=".json" style="display: none;">
+                </div>
+            </div>
+            
+            <div id="capsulesContainer" class="row">
+                <!-- Capsules will be loaded here -->
+            </div>
+
+            <div id="emptyLibrary" class="empty-state" style="display: none;">
+                <i class="bi bi-journal-x display-1"></i>
+                <h3 class="mt-3">No capsules yet</h3>
+                <p class="text-muted">Click New Capsule to Create one, or Import JSON to load a shared capsule.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section id="author" class="section">
+        <div class="container mt-4">
+            <div class="d-flex justify-content-between align-items-start mb-4 author-header"><div class="me-3 author-title">
+                <h3 class="mb-1">Author Capsule</h3>
+                <p class="mb-0 text-muted">Draft notes, flashcard, and quizzes, Auto-saves locally</p>
+            </div>
+            <div class="d-flex align-items-center author-actions">
+                <button class="btn btn-outline-black btn-dark me-2" id="backToLibraryBtn">
+                    <i class="bi bi-arrow-left me-1"></i> 
+                    <span class="btn-text">Back</span>
+                </button>
+                <button class="btn btn-outline-black btn-dark" id="saveCapsuleBtn">
+                    <i class="bi bi-save me-1"></i> 
+                    <span class="btn-text">Save Capsule</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Meta Information Card -->
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="bi me-2"></i>Meta Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <label for="capsuleTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="capsuleTitle" placeholder="Enter title">
+                        </div>
+
+                        <!-- Subject -->
+                        <div class="mb-3">
+                            <label for="capsuleSubject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="capsuleSubject" placeholder="Enter subject">
+                        </div>
+
+                        <!-- Level -->
+                        <div class="mb-3">
+                            <label for="capsuleLevel" class="form-label">Level</label>
+                            <select class="form-select" id="capsuleLevel">
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label for="capsuleDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="capsuleDescription" rows="3" placeholder="Enter description ..."></textarea>
+                        </div>
+                    </div> 
+
+                    <!-- Notes -->
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="mb-0"><i class="bi me-2"></i>Notes (one idea per line)</h6>
+                        </div>
+                        <div id="notesEditor">
+                            <div class="note-item mb-2">
+                                <textarea class="form-control note-content" rows="6" placeholder="Enter note content..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div> 
+
+        <!-- Flashcards and Quiz Card -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-4">
+                    <!--Flashcards -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center"><h5 class="mb-0"><i class="bi me-2"></i>Flashcards</h5>
+                                <button class="btn btn-sm btn-light" id="addFlashcardBtn">
+                                    <i class="bi bi-plus"></i>
+                                    <span class="btn-text">Add</span>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3" id="flashcardsContainer">
+                                    <!-- Flashcard items will be added here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Quiz -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0"><i class="bi me-2"></i>Quiz Questions</h5>
+                                <button class="btn btn-sm btn-light" id="addQuestionBtn">
+                                    <i class="bi bi-plus"></i>
+                                    <span class="btn-text">Add</span>
+                                </button>
+                            </div>
+                            <div class="card-body" id="quizEditor">
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</section>
+
+<!-- Learn Section -->
+<section id="learn" class="section">
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0"><i class="bi bi-journal me-2"></i>Select Capsule</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="capsuleSelector" class="form-label">Capsule</label>
+                            <select class="form-select" id="capsuleSelector">
+                                <option value="">-- Select a capsule --</option>
+                            </select>
+                            <button id="exportCapsuleBtn" class="btn btn-outline-dark mt-2 w-100">
+                                <i class="bi bi-download me-1"></i> 
+                                <span class="btn-text">Export</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <ul class="nav nav-tabs card-header-tabs" id="learnTabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link text-white bg-dark active" id="notes-tab" data-bs-toggle="tab" href="#notesTab" role="tab">
+                                    <i class="bi bi-journal-text text-white me-1"></i> 
+                                    <span class="nav-text">Notes</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white bg-dark" id="flashcards-tab" data-bs-toggle="tab" href="#flashcardsTab" role="tab">
+                                    <i class="bi bi-card-text text-white me-1"></i><span class="nav-text">Flashcards</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white bg-dark" id="quiz-tab" data-bs-toggle="tab" href="#quizTab" role="tab">
+                                    <i class="bi bi-question-circle text-white me-1"></i> 
+                                    <span class="nav-text">Quiz</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <!-- Notes Tab -->
+                            <div class="tab-pane fade show active" id="notesTab" role="tabpanel">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Notes</h5>
+                                </div>
+                                <div id="notesContent">
+                                    <div class="empty-state">
+                                        <i class="bi bi-journal-text display-1"></i>
+                                        <h5 class="mt-3">No capsule selected</h5>
+                                        <p class="text-muted">Select a capsule from the dropdown to view its notes.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Flashcards Tab -->
+                            <div class="tab-pane fade" id="flashcardsTab" role="tabpanel">
+                                <div id="flashcard">
+                                    <div class="empty-state">
+                                        <i class="bi bi-card-text display-1"></i>
+                                        <h5 class="mt-3">No capsule selected</h5>
+                                        <p class="text-muted">Select a capsule from the dropdown to study its flashcards.</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center mt-4" id="flashcardControls" style="display: none;">
+                                    <button class="btn btn-success me-2" id="knowFlashcard">
+                                        <i class="bi bi-check-circle me-1"></i> 
+                                        <span class="btn-text">Known</span>
+                                    </button>
+                                    <button class="btn btn-danger" id="dontKnowFlashcard">
+                                        <i class="bi bi-x-circle me-1"></i>
+                                        <span class="btn-text">Unknown</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Quiz Tab -->
+                            <div class="tab-pane fade" id="quizTab" role="tabpanel">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Quiz</h5>
+                                    <span id="quizProgress">Question 0 of 0</span>
+                                </div>
+                                <div id="quizContent">
+                                    <div class="text-center py-5">
+                                        <i class="bi bi-question-circle display-1 text-muted"></i>
+                                        <h5 class="mt-3">No quiz available</h5>
+                                        <p class="text-muted">Select a capsule with quiz questions to start.</p>
+                                        <div class="quiz-start-container mt-3">
+                                            <button class="btn btn-primary" onclick="startQuiz()">
+                                                <i class="bi bi-play-circle me-1"></i> Start Quiz
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-4" id="quizControls" style="display: none;">
+                                    <button class="btn btn-secondary" id="restartQuizBtn">
+                                        <i class="bi bi-arrow-repeat me-1"></i> 
+                                        <span class="btn-text">Restart Quiz</span>
+                                    </button>
+                                    <button  type="button" class="btn btn-dark" id="nextQuestionBtn" style="display: none;">
+                                        <span class="btn-text">Next Question</span>
+                                        <i class="bi bi-chevron-right ms-1"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-success" id="showResultsBtn" style="display: none;">
+                                        <span class="btn-text">Show Results</span>
+                                        <i class="bi bi-trophy ms-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </div> 
+</section>
+
+<!-- Toast for notifications -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="notificationToast" class="toast" role="alert">
+        <div class="toast-header">
+            <i class="bi bi-info-circle text-white me-2"></i>
+            <strong class="me-auto">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body" id="toastMessage"></div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+<script src="storage.js"></script>
+<script src="libary.js"></script>
+<script src="author.js"></script>
+<script src="learn.js"></script>
+</body>
+</html>

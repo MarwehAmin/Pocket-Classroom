@@ -1,0 +1,896 @@
+:root {
+    --primary: #000;
+    --secondary: #6c757d;
+    --light: #fff;
+    --dark: #000;  
+    --accent-gradient: linear-gradient(135deg, #20c997, #0d6efd);
+}
+
+[data-bs-theme="dark"] {
+    --bs-body-bg: #121212;
+    --bs-body-color: #f8f9fa;
+    --bs-secondary-bg: #1e1e1e;
+    --bs-tertiary-bg: #2d2d2d;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--bs-secondary);
+}
+
+/* Library Section */
+.library-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.library-title {
+    flex: 1;
+}
+
+.library-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Capsule Cards */
+.capsule-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    min-height: 200px;
+    margin-bottom: 1.5rem;
+}
+
+.capsule-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.capsule-card .card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.capsule-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.capsule-card .card-subtitle {
+    font-size: 0.85rem;
+    color: #718096;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.capsule-card .badge.bg-secondary {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.capsule-card .btn {
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-height: 36px;
+    transition: all 0.2s ease;
+}
+
+.capsule-card .btn-group {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.capsule-card .btn-group .btn {
+    flex: 1;
+    min-width: 0;
+}
+
+.capsule-card .btn i {
+    font-size: 0.8rem;
+}
+
+.capsule-card .btn-outline-secondary {
+    background: rgba(255, 255, 255, 0.8);
+    color: #4a5568;
+    border: 1px solid #e2e8f0;
+}
+
+.capsule-card .btn-outline-secondary:hover:not(.delete-btn) {
+    background: #bec6d0 !important;
+    color: black !important;
+    border-color: #94a3b8 !important;
+    transform: translateY(-1px);
+}
+
+.capsule-card .delete-btn:hover {
+    background: #f56565 !important;
+    color: black !important;
+    border-color: #f56565 !important;
+    transform: translateY(-1px);
+}
+
+.capsule-card .learn-btn:hover,
+.capsule-card .edit-btn:hover,
+.capsule-card .export-btn:hover {
+    background: #94a3b8 !important;
+    color: white !important;
+    border-color: #94a3b8 !important;
+}
+
+/* Author Section */
+.author-header {
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.author-title {
+    flex: 1;
+    min-width: 250px;
+}
+
+.author-actions {
+    flex-shrink: 0;
+}
+
+#author input.form-control:hover,
+#author textarea.form-control:hover,
+#author select.form-select:hover,
+#author input.form-control:focus,
+#author textarea.form-control:focus,
+#author select.form-select:focus {
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Flashcards */
+.flashcard-row {
+    background: var(--bs-light);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.flashcard-row:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.flashcard-header {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.75rem;
+}
+
+.flashcard-fields {display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.flashcard-field label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--bs-body-color);
+}
+
+.flashcard-input {
+    border: 1px solid;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    transition: all 0.3s ease;
+    min-height: 40px;
+    resize: vertical;
+}
+
+.flashcard-navigation {
+    padding: 0.5rem 0;
+}
+
+.flashcard-content-wrapper {
+    min-height: 200px;
+}
+
+.flashcard-content {
+    transition: all 0.3s ease;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.flashcard-content:hover {
+    border-color: #2d2f30 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.flashcard-input:focus {
+    outline: none;
+    border-color: var(--dark);
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.1);
+}
+
+#focusableFlashcard:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Quiz options */
+.quiz-hover {
+    background: var(--bs-light);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quiz-hover:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+    border-color: var(--bs-primary);
+    cursor: pointer;
+}
+
+.quiz-option {
+    min-height: auto !important;
+    height: auto !important;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    padding: 12px 15px !important;
+    margin-bottom: 0.5rem;
+}
+
+.quiz-option:hover {
+    background-color: rgba(0,0,0,0.05);
+    border-color: var(--secondary);
+}
+
+.quiz-option.correct {
+    background-color: rgba(25, 135, 84, 0.1);
+    border-left: 4px solid var(--bs-success);
+}
+
+.quiz-option.incorrect {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 4px solid var(--bs-danger);
+}
+
+/* Buttons */
+.btn {
+    transition: all 0.2s;
+    border-radius: 0.5rem;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.card {
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.card-header {
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+}
+
+
+.flashcard-header-unified {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem !important;
+}
+
+.flashcard-header-unified > div {
+    display: flex;
+    align-items: center;
+}
+
+.flashcard-header-unified .known-counter {
+    font-weight: bold;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.flashcard-header-unified .current-counter {
+    font-weight: bold;
+    color: #495057;
+    font-size: 1rem;
+}
+
+.flashcard-header-unified .btn-group .btn {
+    padding: 0.375rem 0.75rem;
+}
+
+
+@media (max-width: 480px) {
+    .navbar-brand {
+        font-size: 1rem;
+    }
+    
+    .nav-text, .btn-text {
+        display: inline !important;
+    }
+    
+    /* Library Section */
+    .library-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .library-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .library-actions .btn {
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+    
+    /* Capsule Cards */
+    .capsule-card {
+        min-height: auto;
+        margin-bottom: 1rem;
+    }
+    
+    .capsule-card .card-body {
+        padding: 1rem;
+    }
+    
+    .capsule-card .btn-group {
+        flex-wrap: wrap;
+    }
+    
+    .capsule-card .btn-group .btn {
+        flex: 1 1 45%;
+        margin: 0.1rem;
+        font-size: 0.7rem;
+        min-height: 44px;
+    }
+    
+    .capsule-card .btn i {
+        margin-right: 0.25rem;
+    }
+    
+    /* Author Section */
+    .author-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .author-actions {width: 100%;
+    }
+    
+    .author-actions .btn {
+        flex: 1;
+    }
+    
+    /* Flashcards & Quiz */
+    .flashcard-fields {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .flashcard-row {
+        padding: 1rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .remove-flashcard, .remove-item {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.7rem !important;
+        min-height: 32px !important;
+    }
+    
+    #learnTabs .nav {
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+    }
+    
+    #learnTabs .nav-item {
+        flex: 1;
+        text-align: center;
+    }
+    
+    #learnTabs .nav-link {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+    }
+    
+    #learnTabs .nav-link i {
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    .flashcard-header {
+        text-align: center;
+    }
+    
+    .flashcard-header .d-flex {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .flashcard-navigation .btn {
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .flashcard-content {
+        min-height: 150px;
+        font-size: 1.1rem;
+    }
+
+    .flashcard-header-unified {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 0.75rem;
+    }
+    
+    .flashcard-header-unified > div {
+        justify-content: center !important;
+        margin: 0.25rem 0;
+    }
+    
+    .flashcard-header-unified .btn-group {
+        margin-top: 0.5rem;
+    }
+    
+    .current-counter {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin: 0 1rem;
+    }
+    
+    #flashcardsTab .card-header:first-child {
+        display: none !important;
+    }
+    
+    #prevFlashcard, #nextFlashcard {
+        min-width: 80px;
+    }
+    
+    .quiz-start-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .quiz-start-container .btn {
+        width: auto;
+        min-width: 150px;
+    }
+    
+    /* Learn Section */
+    .col-md-3, .col-md-9 {
+        width: 100%;
+    }
+    
+    #learnTabs .nav-link {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    #flashcardControls {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    
+    #flashcardControls .btn {
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+    
+    #quizControls {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    #quizControls .btn {
+        width: 100%;
+        justify-content: center;
+        margin: 0.25rem 0;
+    }
+    
+    .flashcard-content {
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        padding: 1rem;
+    } 
+
+  .quiz-option {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .nav-text, .btn-text {
+        display: inline !important;
+    }
+    
+    .library-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .library-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .capsule-card .btn-group {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .capsule-card .btn-group .delete-btn {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+    
+    .capsule-card .btn {
+        min-height: 44px;
+        font-size: 0.8rem;
+        padding: 0.5rem 0.25rem;
+        margin: 0;
+    }
+    
+    .capsule-card .btn i {
+        font-size: 0.9rem;
+        margin-right: 0.25rem;
+    }
+    
+    .capsule-card .btn-text {
+        display: inline !important;
+        font-size: 0.75rem;
+    }
+    
+    .author-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .author-actions {
+        width: 100%;
+    }
+    
+    .flashcard-fields {
+        grid-template-columns: 1fr;
+    }
+    
+    .col-md-3, .col-md-9 {
+        width: 100%;
+    }
+    
+    #learnTabs .nav {
+        flex-direction: row !important;
+    }
+    
+    #learnTabs .nav-item {
+        flex: 1;
+    }
+    
+    #learnTabs .nav-link {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .flashcard-header-unified {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .flashcard-header-unified > div {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    #flashcardsTab .card-header:first-child {
+        display: none !important;
+    }
+    
+    .quiz-start-container {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .nav-text, .btn-text {
+        display: inline !important;
+    }
+    
+    .capsule-card .btn-group {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .capsule-card .btn-group .delete-btn {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+    
+    .capsule-card .btn {
+        min-height: 44px;
+        font-size: 0.8rem;
+        padding: 0.5rem 0.25rem;
+        margin: 0;
+    }
+    
+    .capsule-card .btn i {
+        font-size: 0.9rem;
+        margin-right: 0.25rem;
+    }
+    
+    .capsule-card .btn-text {
+        display: inline !important;
+        font-size: 0.75rem;
+    }
+    
+    .library-header {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .flashcard-fields {
+        grid-template-columns: 1fr;
+    }
+    
+    #learnTabs .nav-link {
+        font-size: 0.85rem;
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .flashcard-header-unified {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    #flashcardsTab .card-header:first-child {
+        display: none !important;
+    }
+    
+    .quiz-start-container {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 767px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .form-control, .form-select {
+        min-height: 44px;
+        font-size: 16px;
+    }
+    
+    textarea.form-control {
+        min-height: 100px;
+    }
+    
+    .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .navbar-collapse {
+        margin-top: 1rem;
+    }
+    
+    .nav-link {
+        padding: 0.75rem 1rem;
+    }
+    
+    .nav-tabs .nav-link {
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+
+@media (hover: none) and (pointer: coarse) {
+    .btn:hover {
+        transform: none;
+    }
+    
+    .capsule-card:hover {
+        transform: none;
+    }
+    
+    .flashcard-row:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .nav-text, .btn-text {
+        display: inline !important;
+    }
+    
+    .library-header {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .library-actions {
+        flex-direction: row;
+    }
+    
+    .capsule-card .btn-group {
+        flex-direction: row;
+    }
+    
+    .author-header {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .flashcard-fields {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .flashcard-content {
+        min-height: 200px;
+        font-size: 1.4rem;
+    }
+    
+    .flashcard-header-unified {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    #flashcardsTab .card-header:first-child {
+        display: flex !important;
+    }
+}
+
+.quiz-start-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.flashcard-content {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.flashcard-content:hover {
+    transform: scale(1.02);
+}
+
+
+#flashcardControls {
+    transition: all 0.3s ease;
+}
+
+#knowFlashcard {
+    background-color: var(--dark);
+    border: none;
+    color: white;
+}
+
+#dontKnowFlashcard {
+    background-color: var(--dark);
+    border: none;
+    color: white;
+}
+
+
+.progress {
+    background-color: #e9ecef;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.progress-bar {
+    transition: width 0.6s ease;
+    background: linear-gradient(90deg, #4CAF50 0%, #66bB6A 50%, #8BC34A 100%);
+}
+
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    .flashcard-header .d-flex {
+        flex-direction: row;
+    }
+    
+    .flashcard-navigation .btn {
+        min-width: 140px;
+    }
+    
+    .flashcard-content {
+        min-height: 180px;
+        font-size: 1.3rem;
+    }
+}
